@@ -1,5 +1,5 @@
 -- Query Look at Weekly Sales
--- Notes DATEPART function returns integer representation of the format given in brackets
+-- Note DATEPART function returns integer representation of the format given inside the brackets
 
 SELECT SUM(ft.SalesAmount) AS 'WeeklySales', DATEPART(ww,ft.OrderDate) AS 'WeekNum'
 FROM FactInternetSales ft 
@@ -34,12 +34,12 @@ ORDER BY
    GroupAvgSales desc;
    
  ---Answer---  
-Pacific	Australia	392.5677
-Europe	Germany	356.8718
-Europe	United Kingdom	346.2114
-Europe	France	323.4655
-North America	Southwest	308.2826
-North America	Northwest	262.5548
+Pacific	Australia 392.5677
+Europe	Germany 356.8718
+Europe	United Kingdom 346.2114
+Europe	France 323.4655
+North America	Southwest 308.2826
+North America	Northwest 262.5548
 
 
 
