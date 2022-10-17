@@ -6,3 +6,15 @@ FROM FactInternetSales ft
 WHERE YEAR (ft.OrderDate) = 2013
 GROUP BY DATEPART(ww,ft.OrderDate)
 ORDER BY DATEPART(ww,ft.OrderDate) ASC
+
+-- Number of Employees in 2013 
+
+SELECT COUNT (1)
+FROM DimEmployee emp
+WHERE emp.StartDate <= '2013-01-01'
+    AND (
+        emp.EndDate > '2013-01-01'
+        OR emp.EndDate IS NULL 
+    );
+    
+-- 290 answer
