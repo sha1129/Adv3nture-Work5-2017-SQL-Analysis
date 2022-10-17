@@ -1,7 +1,6 @@
 -- Query Look at Weekly Sales
 -- Notes DATEPART function returns integer representation of the format given in brackets
-**THis is boidl**
- 
+
 SELECT SUM(ft.SalesAmount) AS 'WeeklySales', DATEPART(ww,ft.OrderDate) AS 'WeekNum'
 FROM FactInternetSales ft 
 WHERE YEAR (ft.OrderDate) = 2013
