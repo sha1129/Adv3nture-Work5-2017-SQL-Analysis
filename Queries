@@ -18,3 +18,28 @@ WHERE emp.StartDate <= '2013-01-01'
     );
     
 -- 290 answers
+
+-- Using partition Windows Funcitons to find average sales by Territoy and Region
+
+SELECT DISTINCT 
+       t.SalesTerritoryGroup,
+       t.SalesTerritoryRegion,
+       AVG(ft.SalesAmount) OVER(PARTITION BY t.SalesTerritoryRegion) AS 'GroupAvgSales'
+FROM FactInternetSales ft
+JOIN DimSalesTerritory t ON
+   ft.SalesTerritoryKey = t.SalesTerritoryKey
+WHERE 
+   YEAR(ft.OrderDate) = 2013
+ORDER BY  
+   GroupAvgSales desc;
+   
+ ---Answer---  
+Pacific	Australia	392.5677
+Europe	Germany	356.8718
+Europe	United Kingdom	346.2114
+Europe	France	323.4655
+North America	Southwest	308.2826
+North America	Northwest	262.5548
+
+
+
