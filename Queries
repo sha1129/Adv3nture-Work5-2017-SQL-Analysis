@@ -17,4 +17,4 @@ WHERE emp.StartDate <= '2013-01-01'
         OR emp.EndDate IS NULL 
     );
     
--- 290 answer
+-- 290 answers
