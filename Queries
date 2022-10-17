@@ -1,4 +1,4 @@
- **-- Query Look at Weekly Sales **
+ ** -- Query Look at Weekly Sales **
  #-- Notes DATEPART function returns integer representation of the format given in brackets
  
 SELECT SUM(ft.SalesAmount) AS 'WeeklySales', DATEPART(ww,ft.OrderDate) AS 'WeekNum'
