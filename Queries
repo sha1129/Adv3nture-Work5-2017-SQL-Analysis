@@ -34,10 +34,10 @@ ORDER BY
    GroupAvgSales desc;
    
  ---Answer---  
-Pacific	Australia 392.5677
-Europe	Germany 356.8718
-Europe	United Kingdom 346.2114
-Europe	France 323.4655
+Pacific	        Australia 392.5677
+Europe	        Germany 356.8718
+Europe	        United Kingdom 346.2114
+Europe	        France 323.4655
 North America	Southwest 308.2826
 North America	Northwest 262.5548
 
