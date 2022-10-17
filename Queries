@@ -1,0 +1,11 @@
+ -- Query Look at Weekly Sales
+ 
+SELECT SUM(ft.SalesAmount) AS 'WeeklySales',
+        DATEPART(ww,ft.OrderDate) AS 'WeekNum'
+ FROM FactInternetSales ft 
+ WHERE 
+    YEAR (ft.OrderDate) = 2013
+ GROUP BY 
+    DATEPART(ww,ft.OrderDate)
+ ORDER BY 
+    DATEPART(ww,ft.OrderDate) ASC
