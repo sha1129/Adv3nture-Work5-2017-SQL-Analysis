@@ -41,5 +41,13 @@ Europe	        France          323.4655
 North America	Southwest       308.2826
 North America	Northwest       262.5548
 
+-- List the product name and the customer First Name for all Customers who ordered ProductModel 'Racing Socks'.
 
+SELECT ft.CustomerKey, c.FirstName, p.ModelName
+FROM DimProduct p 
+Join FactInternetSales ft ON p.ProductKey = ft.ProductKey
+JOIN DimCustomer c on c.CustomerKey = ft.CustomerKey
+Where ModelName like 'Racing Socks';
+
+-- imporvement can also take count of all the customers that got this
 
