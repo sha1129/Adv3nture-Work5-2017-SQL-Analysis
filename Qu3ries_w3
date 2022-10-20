@@ -1,1 +1,9 @@
+Query to find sum of Sales Amount. Group by distinct salespersonid and customerid. 
+Rolls up the results into subtotal and running total.
 
+
+SELECT DISTINCT SUM(s.SalesAmount), s.CustomerKey, e.EmployeeKey  
+FROM FactInternetSales s
+JOIN DimSalesTerritory st ON s.SalesTerritoryKey = st.SalesTerritoryKey
+JOIN DimEmployee e ON e.SalesTerritoryKey = st.SalesTerritoryKey
+GROUP BY ROLLUP(s.SalesAmount,s.CustomerKey,e.EmployeeKey)
