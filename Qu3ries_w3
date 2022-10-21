@@ -1,5 +1,5 @@
-Query to find sum of Sales Amount. Group by distinct salespersonid and customerid. 
-Rolls up the results into subtotal and running total.
+-- Query to find sum of Sales Amount. Group by distinct salespersonid and customerid. 
+-- Rolls up the results into subtotal and running total.
 
 
 SELECT DISTINCT SUM(s.SalesAmount), s.CustomerKey, e.EmployeeKey  
@@ -7,3 +7,14 @@ FROM FactInternetSales s
 JOIN DimSalesTerritory st ON s.SalesTerritoryKey = st.SalesTerritoryKey
 JOIN DimEmployee e ON e.SalesTerritoryKey = st.SalesTerritoryKey
 GROUP BY ROLLUP(s.SalesAmount,s.CustomerKey,e.EmployeeKey)
+
+-- Finding Weekly Sales
+SELECT SUM(s.SalesAmount) 'WeeklySales', DATEPART(ww,s.OrderDate) as 'WeekNUm'
+FROM FactInternetSales s
+WHERE YEAR(s.OrderDate) = 2013
+GROUP BY DATEPART(ww, s.OrderDate)
+ORDER BY DATEPART(ww, s.OrderDate) ASC
+
+
+
+
