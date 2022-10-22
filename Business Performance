@@ -5,3 +5,12 @@ FROM FactInternetSales s
 WHERE YEAR(s.ShipDate) = 2013
 GROUP BY DATEPART(m, s.ShipDate)
 ORDER BY DATEPART(m, s.ShipDate)
+
+
+-- Which Territory Made the most sales
+SELECT count(s.SalesTerritoryKey) 'NumberOfSale', st.SalesTerritoryRegion, st.SalesTerritoryCountry
+FROM FactInternetSales s 
+JOIN DimSalesTerritory st ON s.SalesTerritoryKey = st.SalesTerritoryKey
+WHERE YEAR(s.ShipDate) = 2013
+GROUP BY s.SalesTerritoryKey, st.SalesTerritoryRegion, st.SalesTerritoryCountry
+ORDER BY count(s.SalesTerritoryKey) DESC
