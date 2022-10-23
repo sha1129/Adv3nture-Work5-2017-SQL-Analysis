@@ -14,3 +14,12 @@ JOIN DimSalesTerritory st ON s.SalesTerritoryKey = st.SalesTerritoryKey
 WHERE YEAR(s.ShipDate) = 2013
 GROUP BY s.SalesTerritoryKey, st.SalesTerritoryRegion, st.SalesTerritoryCountry
 ORDER BY count(s.SalesTerritoryKey) DESC
+
+-- Now lets look at top 20 products that got sold in 2013 from our distirbutation center
+SELECT top(20) count(s.ProductKey), p.EnglishProductName
+FROM FactInternetSales s
+JOIN DimProduct p ON s.ProductKey = p.ProductKey
+WHERE YEAR(s.ShipDate) = 2013
+GROUP BY s.ProductKey, p.EnglishProductName
+ORDER BY count(s.ProductKey) desc 
+
