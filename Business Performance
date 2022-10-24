@@ -23,3 +23,15 @@ WHERE YEAR(s.ShipDate) = 2013
 GROUP BY s.ProductKey, p.EnglishProductName
 ORDER BY count(s.ProductKey) desc 
 
+-- From last query we know that Water Bottle - 30 oz. got sold the most
+-- now need to know the location that got sold the most
+
+SELECT p.EnglishProductName, count(s.ProductKey) NumberOfItemsSold, st.SalesTerritoryCountry
+FROM FactInternetSales s
+JOIN DimProduct p ON s.ProductKey = p.ProductKey
+JOIN DimSalesTerritory st ON s.SalesTerritoryKey = st.SalesTerritoryKey
+WHERE p.EnglishProductName like 'Water Bottle - 30 oz.'
+GROUP BY st.SalesTerritoryCountry,s.ProductKey, p.EnglishProductName
+ORDER BY count(s.ProductKey) desc 
+
+-- US sold the most 
