@@ -36,8 +36,9 @@ ORDER BY count(s.ProductKey) desc
 
 --Ans US sold the most 
 
--- Tring Window Function
+-- Trying Window Function
 -- SUM of sales by Sales Territory Group
+
 SELECT DISTINCT st.SalesTerritoryGroup,
    SUM(s.SalesAmount) OVER(PARTITION BY st.SalesTerritoryGroup) AS Sum_OfSales_2013
 FROM FactInternetSales s
