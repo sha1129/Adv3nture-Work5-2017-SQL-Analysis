@@ -34,4 +34,14 @@ WHERE p.EnglishProductName like 'Water Bottle - 30 oz.'
 GROUP BY st.SalesTerritoryCountry,s.ProductKey, p.EnglishProductName
 ORDER BY count(s.ProductKey) desc 
 
--- US sold the most 
+--Ans US sold the most 
+
+-- Tring Window Function
+-- SUM of sales by Sales Territory Group
+SELECT DISTINCT st.SalesTerritoryGroup,
+   SUM(s.SalesAmount) OVER(PARTITION BY st.SalesTerritoryGroup) AS Sum_OfSales_2013
+FROM FactInternetSales s
+JOIN DimSalesTerritory st ON
+   s.SalesTerritoryKey = st.SalesTerritoryKey
+WHERE YEAR(s.OrderDate) = 2013
+
