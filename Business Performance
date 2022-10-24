@@ -34,6 +34,18 @@ WHERE p.EnglishProductName like 'Water Bottle - 30 oz.'
 GROUP BY st.SalesTerritoryCountry,s.ProductKey, p.EnglishProductName
 ORDER BY count(s.ProductKey) desc 
 
+-- WIP Query Find out sales Quota on target or not
+--part 1
+SELECT Distinct e.EmployeeKey, e.FirstName, SUM(s.SalesAmount) Total_FromSales
+FROM FactInternetSales s
+JOIN DimSalesTerritory st ON
+   s.SalesTerritoryKey = st.SalesTerritoryKey
+JOIN DimEmployee e ON
+   e.SalesTerritoryKey = st.SalesTerritoryKey
+WHERE YEAR(s.OrderDate) = 2013
+GROUP BY e.EmployeeKey, e.FirstName
+ORDER BY SUM(s.SalesAmount) DESC
+
 --Ans US sold the most 
 
 -- Trying Window Function
