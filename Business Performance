@@ -59,7 +59,7 @@ JOIN DimSalesTerritory st ON
 WHERE YEAR(s.OrderDate) = 2013
 
 -- Customer with the highest sales total
-
+____________________________________________________________
 SELECT c.CustomerKey, c.FirstName + ' '+ c.LastName AS FullName, 
     COUNT (*) AS NumbOrders,
     SUM(f.SalesAmount) AS TotalSpending
@@ -68,18 +68,4 @@ JOIN DimCustomer c ON f.CustomerKey = c.CustomerKey
 GROUP BY c.CustomerKey, c.FirstName + ' '+ c.LastName
 ORDER BY SUM(f.SalesAmount) DESC;-- Customer with the highest sales total
 
-SELECT c.CustomerKey, c.FirstName + ' '+ c.LastName AS FullName, 
-    COUNT (*) AS NumbOrders,
-    SUM(f.SalesAmount) AS TotalSpending
-FROM FactInternetSales f 
-JOIN DimCustomer c ON f.CustomerKey = c.CustomerKey
-GROUP BY c.CustomerKey, c.FirstName + ' '+ c.LastName
-ORDER BY SUM(f.SalesAmount) DESC;-- Customer with the highest sales total
 
-SELECT c.CustomerKey, c.FirstName + ' '+ c.LastName AS FullName, 
-    COUNT (*) AS NumbOrders,
-    SUM(f.SalesAmount) AS TotalSpending
-FROM FactInternetSales f 
-JOIN DimCustomer c ON f.CustomerKey = c.CustomerKey
-GROUP BY c.CustomerKey, c.FirstName + ' '+ c.LastName
-ORDER BY SUM(f.SalesAmount) DESC;
