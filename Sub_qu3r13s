@@ -1,5 +1,27 @@
-##To learn sub queries we need to define the information that we need to find
+### To learn sub queries, we need to define the information that we need to find
 
--- To find: Cost of product vs sales amount
--- This is a good way to start as it involves two tables 
+- To find: Cost of product vs sales amount
+- This is a good way to start as it involves two tables 
+
+##### Query one: will find a list of product key/keys that have highest Production Cost
+
+    Select ProductKey
+    FROM DimProduct
+    WHERE StandardCost = (SELECT max(StandardCost) FROM DimProduct)
+    
+    
+This above can be used as sub-query for faster finding of information
+
+##### Query two: will find a list of product key/keys that have highest Production Cost in addition will find Sales amount and number of units sold
+
+    SELECT distinct s.ProductKey, p.EnglishProductName, p.StandardCost, s.SalesAmount, count(s.ProductKey) as Number_of_ProductsSold
+    FROM FactInternetSales s 
+    JOIN DimProduct p ON s.ProductKey = p.ProductKey
+    -- PUT IN 
+    WHERE p.ProductKey in (
+        Select ProductKey
+        FROM DimProduct
+        WHERE StandardCost = (SELECT max(StandardCost) FROM DimProduct)
+    )
+    GROUP BY s.ProductKey,p.EnglishProductName, p.StandardCost, s.SalesAmount
 
