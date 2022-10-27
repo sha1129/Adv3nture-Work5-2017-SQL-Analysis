@@ -1,0 +1,5 @@
+##  To learn sub queries we need to define the information that we need to find
+
+-- To find: Cost of product vs sales amount
+-- This is a good way to start as it involves two tables 
+
