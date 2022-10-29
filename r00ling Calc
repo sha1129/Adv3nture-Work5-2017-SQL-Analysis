@@ -1,0 +1,10 @@
+-- Rolling calculations:
+
+-- weekly Sales Total
+-- this is base for main query 
+
+SELECT SUM(s.SalesAmount) 'WeeklySales', DATEPART (ww, s.OrderDate) as WeekNum
+FROM FactInternetSales s
+WHERE YEAR(s.OrderDate) = 2013
+GROUP BY DATEPART (ww, s.OrderDate)
+ORDER BY DATEPART (ww, s.OrderDate)
