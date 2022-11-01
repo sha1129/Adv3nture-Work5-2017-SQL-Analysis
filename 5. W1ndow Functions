@@ -9,7 +9,7 @@ FROM FactInternetSales
 ORDER BY YEAR(OrderDate);
 
 -- Window function is useful to find ranking 
-
+-- This query will find ranking of customers which will display full names
 
 
 
