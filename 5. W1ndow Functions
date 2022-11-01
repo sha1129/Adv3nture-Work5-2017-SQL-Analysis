@@ -1,10 +1,14 @@
--- Rolling calculations:
+-- Window Function 
+A window function calculate rows that have pk/fk relations to the current row. (source Mode)
 
--- weekly Sales Total
--- this is base for main query 
+Examples: Calculate grand total starting from the year 2010
 
-SELECT SUM(s.SalesAmount) 'WeeklySales', DATEPART (ww, s.OrderDate) as WeekNum
-FROM FactInternetSales s
-WHERE YEAR(s.OrderDate) = 2013
-GROUP BY DATEPART (ww, s.OrderDate)
-ORDER BY DATEPART (ww, s.OrderDate)
+SELECT DISTINCT YEAR(OrderDate) ,
+                SUM(SalesAmount) OVER(order by YEAR(OrderDate))
+FROM FactInternetSales
+ORDER BY YEAR(OrderDate);
+
+-- We can also calculate monthly grand totals 
+
+
+
