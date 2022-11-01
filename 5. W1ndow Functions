@@ -8,7 +8,10 @@ SELECT DISTINCT YEAR(OrderDate) ,
 FROM FactInternetSales
 ORDER BY YEAR(OrderDate);
 
--- We can also calculate monthly grand totals 
+-- Window function is useful to find ranking 
+
+
+
 
 
 
