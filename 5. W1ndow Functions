@@ -11,7 +11,15 @@ ORDER BY YEAR(OrderDate);
 -- Window function is useful to find ranking 
 -- This query will find ranking of customers which will display full names
 
-
+SELECT DISTINCT TOP 10 s.CustomerKey, 
+                CONCAT(c.FirstName,' ',c.LastName) AS FullName,
+                SUM(s.SalesAmount) AS DollarSpent, 
+                RANK() OVER (ORDER BY SUM(s.SalesAmount) DESC) AS Ranking
+FROM FactInternetSales s
+JOIN DimCustomer c 
+    ON s.CustomerKey = c.CustomerKey
+WHERE YEAR(s.OrderDate) = 2013
+group by s.CustomerKey, CONCAT(c.FirstName,' ',c.LastName)
 
 
 
