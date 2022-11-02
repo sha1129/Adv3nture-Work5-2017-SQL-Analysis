@@ -8,6 +8,18 @@ SELECT DISTINCT YEAR(OrderDate) ,
 FROM FactInternetSales
 ORDER BY YEAR(OrderDate);
 
+
+-- Trying Window Function
+-- SUM of sales by Sales Territory Group
+
+SELECT DISTINCT st.SalesTerritoryGroup,
+   SUM(s.SalesAmount) OVER(PARTITION BY st.SalesTerritoryGroup) AS Sum_OfSales_2013
+FROM FactInternetSales s
+JOIN DimSalesTerritory st ON
+   s.SalesTerritoryKey = st.SalesTerritoryKey
+WHERE YEAR(s.OrderDate) = 2013
+
+
 -- Window function is useful to find ranking 
 -- This query will find ranking of customers which will display full names
 
